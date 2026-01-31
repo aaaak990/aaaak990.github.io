@@ -1,61 +1,120 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Настройки - Мемузг</title>
-    <link rel="stylesheet" href="stile.CSS">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>BrowserCraft - Minecraft Clone</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+            font-family: Arial, sans-serif;
+        }
+        
+        #gameContainer {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        #gameCanvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        #ui {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            z-index: 10;
+        }
+        
+        #crosshair {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        #hotbar {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+            z-index: 10;
+        }
+        
+        .hotbar-slot {
+            width: 50px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .hotbar-slot.selected {
+            border: 3px solid yellow;
+        }
+        
+        #loadingScreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 100;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.HTML#home">Главная</a></li>
-                <li><a href="cot.html">Катигории</a></li>
-                <li><a href="ispolniteli.html">Исполнители</a></li>
-                <li><a href="WE.html">О нас</a></li>
-                <li><a href="services.html">Услуги</a></li>
-                <li><a href="contact.html">Контакты</a></li>
-                <li><a href="settings.html">Настройки</a></li>
-                <li><a href="form.html">Отзыв</a></li>
-            </ul>
-        </nav>
-        <h1>ㅤㅤГлавная</h1>
-    </header>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <div id="crosshair"></div>
+        <div id="ui">
+            <div>FPS: <span id="fpsCounter">0</span></div>
+            <div>Position: <span id="positionDisplay">0, 0, 0</span></div>
+        </div>
+        <div id="hotbar">
+            <div class="hotbar-slot selected" data-slot="0">G</div>
+            <div class="hotbar-slot" data-slot="1">D</div>
+            <div class="hotbar-slot" data-slot="2">S</div>
+            <div class="hotbar-slot" data-slot="3">W</div>
+            <div class="hotbar-slot" data-slot="4">L</div>
+            <div class="hotbar-slot" data-slot="5">C</div>
+            <div class="hotbar-slot" data-slot="6">B</div>
+            <div class="hotbar-slot" data-slot="7">T</div>
+            <div class="hotbar-slot" data-slot="8">O</div>
+        </div>
+        <div id="loadingScreen">
+            <h1>Loading BrowserCraft...</h1>
+            <p>Generating world...</p>
+            <div id="progressBar" style="width: 300px; height: 20px; border: 1px solid white; margin-top: 10px;">
+                <div id="progressFill" style="height: 100%; width: 0%; background-color: green;"></div>
+            </div>
+        </div>
+    </div>
 
-    <main>
-        <section id="about"><h1>22.01.2025-Идёт разработка страницы группы Кино!</h1></section>
-        <section id="about"><h1>22.01.2025-Добавленно: история обновлений!</h1></section>
-        <section id="about"><h1>21.01.2025-Добавленно: 10 песен от короля и шута!</h1></section>
-        <section id="about"><h1>21.01.2025-5 песен в жанре рок!</h1></section>
-        <section id="about"><h1>21.01.2025-1 песня на сайте!</h1></section>
-        <section id="about"><h1>20.01.2025-Сделаны основные страницы, код и дизайн!</h1></section>
-        <section id="about"><h1>20.01.2025-Мы открылись!</h1></section>
-
-
-
-        <section id="user-info" style="display: none;">
-            <h2>Информация о пользователе</h2>
-            <p>Вы вошли как: <span id="logged-user"></span></p>
-            <button id="logout">Выйти</button>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 aaaak990. Все права защищены.</p>
-    </footer>
-
-    <script>
-
-    alert("Здравствуйте пользователь!"
-    <img src="DATA/IMAGE/KOT_RAD"/>
-    )
-
-    </script>
-
-    <button id="theme-toggle">🌙</button>
-    <script src="script.js"></script>
-    <script src="auth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
